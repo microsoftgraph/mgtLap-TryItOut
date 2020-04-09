@@ -1,7 +1,6 @@
 # mgtLap-TryItOut
 
-The files in this repo correspond to the daily
-Try It Out exercises from the [A Lap Around Microsoft Graph Toolkit](https://aka.ms/mgtLap) blog series.  Each day has a corresponding Markdown file consisting of resource links, hands-on exercises, or sample projects.
+The files in this repo correspond to the Try It Out exercises from the [A Lap Around Microsoft Graph Toolkit](https://aka.ms/mgtLap) blog series.  Each blog post has a corresponding Markdown file consisting of resource links, hands-on exercises, or sample projects.
 
 ## Contributing
 
