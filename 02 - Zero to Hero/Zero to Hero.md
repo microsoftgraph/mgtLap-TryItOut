@@ -1,0 +1,11 @@
+# [Zero to Hero with Microsoft Graph Toolkit](https://developer.microsoft.com/en-us/graph/blogs/a-lap-around-microsoft-graph-toolkit-day-2-zero-to-hero/)
+
+1. [Join the Microsoft 365 Developer Program](https://developer.microsoft.com/en-us/microsoft-365/dev-program)
+2. [Setup a developer subscription](https://docs.microsoft.com/en-us/office/developer-program/microsoft-365-developer-program-get-started)
+3. [Visual Studio Code](https://code.visualstudio.com/download)
+4. [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
+5. [Azure Portal](https://portal.azure.com/)
+6. [Microsoft Graph Toolkit Providers](https://docs.microsoft.com/en-us/graph/toolkit/providers)
+8. [Microsoft Graph Toolkit MSAL Provider](https://docs.microsoft.com/en-us/graph/toolkit/providers/msal)
+7. [Microsoft Graph Toolkit Login Component](https://docs.microsoft.com/en-us/graph/toolkit/components/login)
+8. [Microsoft Graph Toolkit Agenda Component](https://docs.microsoft.com/en-us/graph/toolkit/components/agenda)
