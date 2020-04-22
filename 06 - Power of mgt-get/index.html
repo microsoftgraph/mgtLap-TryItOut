@@ -1,0 +1,76 @@
+<html>
+  <head>
+    <script src="https://unpkg.com/@microsoft/mgt/dist/bundle/mgt-loader.js"></script>
+    <style>
+      body {
+        background-color: #F3F2F1;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .order {
+        display: flex;
+        flex-direction: column;
+        font-size: 12px;
+        color: #444;
+        border: 1px #EDEBE9 solid;
+        width: 270px;
+        height: 200px;
+        background-color: #ffffff;
+        margin: 10px;
+        float:left;
+        box-shadow: 2px 2px #E4E3E2;
+      }
+
+      .orderheader {
+        font-weight: bold;
+        font-size: larger;
+        background-color: rgb(200, 203, 233);
+        padding: 5px;
+        height: 25px;
+      }
+
+      button {
+        margin-left: 20px;
+        padding: 10 5 10 5;
+        font-size: 14px;
+        background-color: rgb(178, 207, 178);
+      }
+
+      .orderbody {
+        flex-grow: 2;
+        white-space: pre-line;
+        margin: 10px;
+      }
+
+      .orderfooter {
+        font-weight: bold;
+        font-size: larger;
+        padding: 10px;
+        height: 60px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <mgt-msal-provider client-id="[YOUR-CLIENT-ID]"></mgt-msal-provider>
+    <mgt-login></mgt-login>
+
+    <mgt-get resource="/sites/root/lists/[YOUR-SHAREPOINT-LIST-ID]/items?$expand=fields&$filter=fields/Status eq 'Ready for Packing'"
+     scopes="sites.read.all" max-pages="2" polling-rate="0">
+      <template data-type="value">
+        <div class="order">
+          <div class="orderheader">Order {{ fields.Title }} for {{ fields.ContactName }}</div>
+          <div class="orderbody">{{ fields.OrderManifest }}</div>
+          <div class="orderfooter">Items {{ fields.TotalItems }}<button>Packed</button></div>
+        </div>
+      </template>
+      <template data-type="loading">
+        loading
+      </template>
+      <template data-type="error">
+        {{ this.message }}
+      </template>
+    </mgt-get>
+    
+  </body>
+</html>
