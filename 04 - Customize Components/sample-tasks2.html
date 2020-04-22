@@ -24,21 +24,22 @@
 
 <body>
     <h1>Using Properties to Filter Tasks</h1>
-    {{/*  <mgt-msal-provider client-id="[YOUR-CLIENT-ID]"></mgt-msal-provider>     */}}
-    <mgt-msal-provider client-id="afed536b-018e-4f18-96ba-b7cd7387e524"></mgt-msal-provider>  
+    <mgt-msal-provider client-id="[YOUR-CLIENT-ID]"></mgt-msal-provider>
     <mgt-login></mgt-login>
-    <h2>&lt;mgt-tasks /&gt; filtered by category</h2>
     
+    <h2>&lt;mgt-tasks /&gt; Filtered by Title</h2>
+    <div>This sample is filtering every task assigned to "me" with a title that contains "Launch"</div>
     <mgt-tasks />
 
     <script>
+
         let taskView = document.querySelector('mgt-tasks'); 
-        taskView.taskFilter = task =>     task.appliedCategories.category1 === true  
-            || task.appliedCategories.category2 === true  
-            || task.appliedCategories.category3 === true;  
+        // Find tasks that contain the filter value
+        taskView.taskFilter = task => task.title.indexOf('Launch') > -1
+        
     </script>
 
-   
+
     <div class="footer">
     <a href="index.html">Home</a>
     </div>
