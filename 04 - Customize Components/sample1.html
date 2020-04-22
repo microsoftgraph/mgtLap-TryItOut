@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://unpkg.com/@microsoft/mgt/dist/bundle/mgt-loader.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        h1 {
+            font-weight: 300;
+        }
+
+        h2 {
+            font-weight: 300;
+        }
+
+        .footer {
+            padding-top:20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Using Properties and Attributes</h1>
+    <mgt-msal-provider client-id="[YOUR-CLIENT-ID]"></mgt-msal-provider>
+    
+    <h2>&lt;mgt-people /&gt;</h2>
+    <mgt-people></mgt-people>
+
+    <h2>&lt;mgt-people show-max="10" /&gt;</h2>
+    <mgt-people show-max="10"></mgt-people>
+    
+    <h2>&lt;mtg-person person-query="me" /&gt;</h2>
+    <mgt-person person-query="me"></mgt-person>
+
+    <h2>&lt;mgt-person person-query="me" show-name show-email /&gt; </h2>
+    <div>This example uses attributes.</div>
+
+    <mgt-person person-query="me" show-name show-email></mgt-person>
+
+
+    <h2>&lt;mtg-person person-query="me" /&gt; + script</h2>
+    <div>This example sets properties using script.</div>
+
+    <mgt-person person-query="me" id="me1"></mgt-person>
+
+    <script>
+        let person = document.getElementById("me1");
+        person.showName = true;
+        person.showEmail = true;
+    </script>
+
+
+    <div class="footer">
+    <a href="index.html">Home</a>
+    </div>
+</body>
+
+</html>
