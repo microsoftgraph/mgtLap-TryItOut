@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://unpkg.com/@microsoft/mgt/dist/bundle/mgt-loader.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        h1 {
+            font-weight: 300;
+        }
+
+        h2 {
+            font-weight: 300;
+        }
+
+        .footer {
+            padding-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Using specific CSS</h1>
+    <mgt-msal-provider client-id="[YOUR-CLIENT-ID]"></mgt-msal-provider>
+
+    <style>
+        .team-list {
+            max-width: 700px;
+        }
+        
+        .team-list mgt-person {
+            --avatar-size: 72px;
+            --font-size: 24px;
+            width:300px;
+            padding: 12px;
+            transform: rotate(-2deg);
+            transition: -webkit-transform .15s linear;
+            box-shadow: 0 3px 6px rgba(0,0,0,.25);
+            background-color:white;
+            margin: 8px;
+        }
+        
+        .team-list mgt-person:hover {
+          -webkit-transform: scale(1.25);
+          -moz-transform: scale(1.25);
+          position: relative;
+          z-index: 5;
+          box-shadow: 0 3px 6px rgba(0,0,0,.5);  
+        }
+        
+        mgt-person.second, mgt-person.fourth {
+          -webkit-transform: rotate(2deg);
+          -moz-transform: rotate(2deg);
+        }
+        
+        /* Don't rotate every third image, but offset its position */
+        mgt-person.third {
+          -webkit-transform: none;
+          -moz-transform: none;
+          position: relative;
+          top: -5px;
+        }
+        
+        /* Rotate every fifth image by 5 degrees and offset it */
+        mgt-person.fifth {
+          -webkit-transform: rotate(5deg);
+          -moz-transform: rotate(5deg);
+          position: relative;
+          right: 5px;
+        }
+        
+    </style>
+    <h2>&lt;mgt-person /&gt;</h2>
+    <div class="team-list">
+        <mgt-person class="first" person-query="MeganB@M365x214355.onmicrosoft.com" show-name show-email></mgt-person>
+        <mgt-person class="second" person-query="IsaiahL@M365x214355.onmicrosoft.com" show-name show-email></mgt-person>
+        <mgt-person class="third" person-query="LynneR@M365x214355.onmicrosoft.com" show-name show-email></mgt-person>
+        <mgt-person class="fourth" person-query="bobk@tailspintoys.com" show-name show-email></mgt-person>
+        <mgt-person class="fifth" person-query="alex@fineartschool.net" show-name show-email></mgt-person>
+        </team-list>
+    </div>
+    <script>
+        // BEGIN: The code below creates sample users
+        // You can remove this code if you have users in your tenant
+        let person1 = document.querySelector(".first");
+        person1.personImage = "https://randomuser.me/api/portraits/women/9.jpg"
+        person1.personDetails = {
+            "businessPhones": [
+                "+1 412 555 0109"
+            ],
+            "displayName": "Megan Bowen",
+            "givenName": "Megan",
+            "jobTitle": "Auditor",
+            "mail": "MeganB@M365x214355.onmicrosoft.com",
+            "mobilePhone": null,
+            "officeLocation": "12/1110",
+            "preferredLanguage": "en-US",
+            "surname": "Bowen",
+            "userPrincipalName": "MeganB@M365x214355.onmicrosoft.com",
+            "id": "48d31887-5fad-4d73-a9f5-3c356e68a038"
+        };
+
+        let person2 = document.querySelector(".second");
+        person2.personImage = "https://randomuser.me/api/portraits/men/4.jpg"
+        person2.personDetails = {
+            "id": "e3d0513b-449e-4198-ba6f-bd97ae7cae85",
+            "displayName": "Isaiah Langer",
+            "givenName": "Isaiah",
+            "surname": "Langer",
+            "jobTitle": "Web Marketing Manager",
+            "department": "Sales & Marketing",
+            "officeLocation": "20/1101",
+            "userPrincipalName": "IsaiahL@M365x214355.onmicrosoft.com",
+            "imAddress": "sip:isaiahl@m365x214355.onmicrosoft.com",
+            "scoredEmailAddresses": [
+                {
+                    "address": "IsaiahL@M365x214355.onmicrosoft.com",
+                    "relevanceScore": 1073741824,
+                    "selectionLikelihood": "notSpecified"
+                }
+            ],
+            "phones": [
+                {
+                    "type": "business",
+                    "number": "+1 918 555 0101"
+                }
+            ],
+            "personType": {
+                "class": "Person",
+                "subclass": "OrganizationUser"
+            }
+        };
+
+        let person3 = document.querySelector(".third");
+        person3.personImage = "https://randomuser.me/api/portraits/women/85.jpg";
+        person3.personDetails = {
+            "id": "e8a02cc7-df4d-4778-956d-784cc9506e5a",
+            "displayName": "Lynne Robbins",
+            "givenName": "Lynne",
+            "surname": "Robbins",
+            "birthday": null,
+            "personNotes": null,
+            "isFavorite": false,
+            "jobTitle": "Product Manager",
+            "companyName": null,
+            "yomiCompany": null,
+            "department": "Sales & Marketing",
+            "officeLocation": "20/1104",
+            "profession": null,
+            "userPrincipalName": "LynneR@M365x214355.onmicrosoft.com",
+            "imAddress": "sip:lynner@m365x214355.onmicrosoft.com",
+            "scoredEmailAddresses": [
+                {
+                    "address": "LynneR@M365x214355.onmicrosoft.com",
+                    "relevanceScore": -7,
+                    "selectionLikelihood": "notSpecified"
+                }
+            ],
+            "phones": [
+                {
+                    "type": "business",
+                    "number": "+1 918 555 0104"
+                }
+            ],
+            "personType": {
+                "class": "Person",
+                "subclass": "OrganizationUser"
+            }
+        };
+
+        let person4 = document.querySelector(".fourth");
+        person4.personImage = "https://randomuser.me/api/portraits/men/82.jpg";
+        person4.personDetails = {
+            "id": "e63333f5-3d11-4026-8fe3-c0f7b044dd3a",
+            "displayName": "Bob Kelly (TAILSPIN)",
+            "givenName": null,
+            "surname": null,
+            "birthday": null,
+            "personNotes": null,
+            "isFavorite": false,
+            "jobTitle": null,
+            "companyName": null,
+            "yomiCompany": null,
+            "department": null,
+            "officeLocation": null,
+            "profession": null,
+            "userPrincipalName": null,
+            "imAddress": null,
+            "scoredEmailAddresses": [
+                {
+                    "address": "bobk@tailspintoys.com",
+                    "relevanceScore": -2,
+                    "selectionLikelihood": "notSpecified"
+                }
+            ],
+            "phones": [],
+            "personType": {
+                "class": "Person",
+                "subclass": "PersonalContact"
+            }
+        };
+
+        let person5 = document.querySelector(".fifth");
+        person5.personImage = "https://randomuser.me/api/portraits/men/43.jpg";
+        person5.personDetails = {
+            "id": "CaWWYW049UOmLxWM3bm1Tg==",
+            "displayName": "Alex Wilber",
+            "givenName": "Alex",
+            "surname": "Wilber",
+            "birthday": null,
+            "personNotes": null,
+            "isFavorite": false,
+            "jobTitle": null,
+            "companyName": null,
+            "yomiCompany": null,
+            "department": null,
+            "officeLocation": null,
+            "profession": null,
+            "userPrincipalName": null,
+            "imAddress": null,
+            "scoredEmailAddresses": [
+                {
+                    "address": "alex@fineartschool.net",
+                    "relevanceScore": -5,
+                    "selectionLikelihood": "notSpecified"
+                }
+            ],
+            "phones": [],
+            "personType": {
+                "class": "Person",
+                "subclass": "PersonalContact"
+            }
+        };
+        // END: Sample users
+
+
+
+    </script>
+
+    <div class="footer">
+        <a href="index.html">Home</a>
+    </div>
+</body>
+
+</html>
