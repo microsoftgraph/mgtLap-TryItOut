@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://unpkg.com/@microsoft/mgt/dist/bundle/mgt-loader.js"></script>
+    <!-- Style used for the body -->
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        h1 {
+            font-weight: 300;
+        }
+    </style>
+    <!-- Style used for the custom template of the mgt-agenda control -->
+    <style>
+        .event {
+            box-shadow: 0 3.2px 7.2px 0 rgba(0, 0, 0, .132), 0 0.6px 1.8px 0 rgba(0, 0, 0, .108);
+            margin: 10px;
+        }
+
+        .event-title {
+            cursor: pointer;
+            font-size: var(--event-subject-font-size, 19px);
+        }
+
+        .event,
+        .event-title,
+        .event-subTitle,
+        .event-attendees,
+        .event-description,
+        .noData,
+        .loading {
+            padding: 5px;
+        }
+
+        .noData,
+        .loading {
+            font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Customizing <b>mgt-agenda</b> using templates</h1>
+    <mgt-msal-provider client-id="[YOUR-CLIENT-ID]"></mgt-msal-provider>
+    <mgt-agenda>
+        <template data-type="event">
+            <div class="event">
+                <div class="event-subTitle" data-if="getDate(event.start.dateTime) == getDate(event.end.dateTime)">
+                    {{formatDate(event.start.dateTime)}} from {{getTime(event.start.dateTime)}} to
+                    {{getTime(event.end.dateTime)}}</div>
+                <div class="event-subTitle" data-else>
+                    {{formatDate(event.start.dateTime)}} ({{getTime(event.start.dateTime)}}) -
+                    {{formatDate(event.end.dateTime)}} ({{getTime(event.end.dateTime)}})
+                </div>
+                <div class="event-title" data-props="{{@click: openWebLink}}">
+                    {{ event.subject }} @ {{event.location.displayName}}
+                </div>
+                <div class="event-attendees">
+                    <mgt-person data-for="attendee in event.attendees" person-query="{{ attendee.emailAddress.name }}"
+                        person-card="hover" />
+                </div>
+                <div class="event-description" data-props="{{innerHTML: event.body.content}}" />
+            </div>
+        </template>
+        <template data-type="no-data">
+            <p class="noData">
+                There are no events found!
+            </p>
+        </template>
+        <template data-type="loading">
+            <p class="loading">
+                Loading...
+            </p>
+        </template>
+    </mgt-agenda>
+
+    <script>
+        document.querySelector('mgt-agenda').templateContext = {
+            openWebLink: (e, context, root) => {
+                window.open(context.event.webLink, '_blank');
+            },
+            getDate: (dateString) => {
+                let dateObject = new Date(dateString);
+                return dateObject.setHours(0, 0, 0, 0);
+            },
+            getTime: (dateString) => {
+                let dateObject = new Date(dateString);
+                return dateObject.getHours().toString().padEnd(2, '0')
+                    + ':' + dateObject.getMinutes().toString().padEnd(2, '0');
+            },
+            formatDate: (date) => {
+                let dateObject = new Date(date);
+                return dateObject.getDate()
+                    + "/" + months[dateObject.getMonth()]
+                    + "/" + dateObject.getFullYear();
+            }
+        }
+    </script>
+</body>
+
+</html>
