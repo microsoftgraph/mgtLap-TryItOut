@@ -1,0 +1,127 @@
+<html>
+  <head>
+    <script src="https://unpkg.com/@microsoft/mgt/dist/bundle/mgt-loader.js"></script>
+    <style>
+      body {
+        background-color: #F3F2F1;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .order {
+        display: flex;
+        flex-direction: column;
+        font-size: 12px;
+        color: #444;
+        border: 1px #EDEBE9 solid;
+        width: 270px;
+        height: 200px;
+        background-color: #ffffff;
+        margin: 10px;
+        float:left;
+        box-shadow: 2px 2px #E4E3E2;
+      }
+
+      .orderheader {
+        font-weight: bold;
+        font-size: larger;
+        background-color: rgb(200, 203, 233);
+        padding: 5px;
+        height: 25px;
+      }
+
+      .status {
+        margin-left: 10px;
+        padding: 5px;
+        font-family: 'Segoe UI';
+        font-size: 14px;
+      }
+
+      .status.packed {
+        background-color: rgb(178, 207, 178);
+      }
+
+      .status.requested {
+        background-color: rgb(235, 218, 70);
+      }
+
+      button {
+        margin: auto;
+        padding: 5 5 5 5;
+        font-size: 14px;
+        background-color: rgb(200, 203, 233);
+        cursor: pointer;
+      }
+
+      .buttonWrapper {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .orderbody {
+        flex-grow: 2;
+        white-space: pre-line;
+        margin: 10px;
+      }
+
+      .orderfooter {
+        font-weight: bold;
+        font-size: larger;
+        padding: 10px;
+        height: 60px;
+        display: inline-block;
+      }
+
+    </style>
+  </head>
+  <body>
+    <mgt-msal-provider client-id="[YOUR-CLIENT-ID]"></mgt-msal-provider>
+    <mgt-login></mgt-login>
+
+    <mgt-get resource="/sites/root/lists/[YOUR-SHAREPOINT-LIST-ID]/items?$expand=fields&$filter=fields/Status eq 'Ready for Packing'"
+     scopes="sites.read.all" max-pages="2" polling-rate="0">
+      <template data-type="value">
+        <div class="order">
+          <div class="orderheader">Order {{ fields.Title }} for {{ fields.ContactName }}</div>
+          <div class="orderbody">{{ fields.OrderManifest }}</div>
+          <div data-if="fields.Status === 'Ready for Packing'" class="orderfooter">
+            Items {{ fields.TotalItems }}
+            <span class="status packed">Status: Packed</span>
+          </div>
+          <div data-if="fields.Status === 'Requested'" class="orderfooter">
+            Items {{ fields.TotalItems }}<span class="status requested">Status: Requested</span>
+            <div class="buttonWrapper">         
+              <button onclick="updateOrder('{{fields.id}}', 'Ready for Packing')">Pack</button>
+            </div>
+          </div>
+        </div>
+      </template>
+      <template data-type="loading">
+        loading
+      </template>
+      <template data-type="error">
+        {{ this.message }}
+      </template>
+    </mgt-get>
+
+    <script>
+      const provider = mgt.Providers.globalProvider;
+      let graphClient;
+
+      if (provider && provider.state === mgt.ProviderState.SignedIn) {
+        graphClient = provider.graph.client;
+      }
+     
+      const updateOrder = async (orderId, newStatus) => {
+        const fieldValueSet = {
+          Status: newStatus
+        };
+
+        const result = await graphClient.api(`/sites/root/lists/[YOUR-SHAREPOINT-LIST-ID]/items/${orderId}/fields`)
+          .middlewareOptions(mgt.prepScopes('sites.readwrite.all'))
+          .update(fieldValueSet);
+          alert(`Updated order ${result.Title} as Packed`); 
+      }
+    </script>
+  </body>
+</html>
