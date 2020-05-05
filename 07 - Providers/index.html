@@ -78,8 +78,8 @@
     <mgt-msal-provider client-id="[YOUR-CLIENT-ID]"></mgt-msal-provider>
     <mgt-login></mgt-login>
 
-    <mgt-get resource="/sites/root/lists/[YOUR-SHAREPOINT-LIST-ID]/items?$expand=fields&$filter=fields/Status eq 'Ready for Packing'"
-     scopes="sites.read.all" max-pages="2" polling-rate="0">
+    <mgt-get resource="/sites/root/lists/[YOUR-SHAREPOINT-LIST-ID]/items?$expand=fields&$filter=fields/Status ne 'Delivered'"
+    scopes="sites.read.all" max-pages="2" polling-rate="0">
       <template data-type="value">
         <div class="order">
           <div class="orderheader">Order {{ fields.Title }} for {{ fields.ContactName }}</div>
