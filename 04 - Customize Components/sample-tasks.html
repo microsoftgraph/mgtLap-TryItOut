@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <script src="https://unpkg.com/@microsoft/mgt/dist/bundle/mgt-loader.js"></script>
+    <script src="https://unpkg.com/@microsoft/mgt@2/dist/bundle/mgt-loader.js"></script>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -27,17 +27,17 @@
     <mgt-msal-provider client-id="[YOUR-CLIENT-ID]"></mgt-msal-provider>
     <mgt-login></mgt-login>
     <h2>&lt;mgt-tasks /&gt; filtered by category</h2>
-    
+
     <mgt-tasks />
 
     <script>
-        let taskView = document.querySelector('mgt-tasks'); 
-        taskView.taskFilter = task =>     task.appliedCategories.category1 === true  
-            || task.appliedCategories.category2 === true  
-            || task.appliedCategories.category3 === true;  
+        let taskView = document.querySelector('mgt-tasks');
+        taskView.taskFilter = task =>     task.appliedCategories.category1 === true 
+            || task.appliedCategories.category2 === true 
+            || task.appliedCategories.category3 === true; 
     </script>
 
-   
+
     <div class="footer">
     <a href="index.html">Home</a>
     </div>

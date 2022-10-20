@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <script src="https://unpkg.com/@microsoft/mgt/dist/bundle/mgt-loader.js"></script>
+    <script src="https://unpkg.com/@microsoft/mgt@2/dist/bundle/mgt-loader.js"></script>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -26,17 +26,17 @@
     <h1>Using Properties to Filter Tasks</h1>
     <mgt-msal-provider client-id="[YOUR-CLIENT-ID]"></mgt-msal-provider>
     <mgt-login></mgt-login>
-    
+
     <h2>&lt;mgt-tasks /&gt; Filtered by Title</h2>
     <div>This sample is filtering every task assigned to "me" with a title that contains "Launch"</div>
     <mgt-tasks />
 
     <script>
 
-        let taskView = document.querySelector('mgt-tasks'); 
+        let taskView = document.querySelector('mgt-tasks');
         // Find tasks that contain the filter value
         taskView.taskFilter = task => task.title.indexOf('Launch') > -1
-        
+
     </script>
 
 
