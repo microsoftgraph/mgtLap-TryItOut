@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <script src="https://unpkg.com/@microsoft/mgt/dist/bundle/mgt-loader.js"></script>
+    <script src="https://unpkg.com/@microsoft/mgt@2/dist/bundle/mgt-loader.js"></script>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -24,7 +24,7 @@
 
 <body>
     <h1>Using Custom CSS Properties</h1>
-    <mgt-msal-provider client-id="[YOUR-CLIENT-ID]"></mgt-msal-provider>    
+    <mgt-msal-provider client-id="[YOUR-CLIENT-ID]"></mgt-msal-provider>
     <style>
         mgt-person.customperson {
             --person-card-display-name-font-size: 40px;
@@ -39,23 +39,23 @@
             --person-card-details-item-color: #3abf0a;
             --person-card-background-color: #000000;
           }
-          
+
     </style>
     <h2>&lt;mgt-person /&gt;</h2>
     <div>However name to view profile card</div>
-    <mgt-person 
-    person-query="me" 
-    show-name 
-    show-email 
+    <mgt-person
+    person-query="me"
+    show-name
+    show-email
     person-card="hover"></mgt-person>
 
     <h2>&lt;mgt-person /&gt; + Custom CSS</h2>
     <div>However name to view custom style profile card</div>
-    <mgt-person 
+    <mgt-person
     class="customperson"
-    person-query="me" 
-    show-name 
-    show-email 
+    person-query="me"
+    show-name
+    show-email
     person-card="hover"></mgt-person>
 
     <div class="footer">

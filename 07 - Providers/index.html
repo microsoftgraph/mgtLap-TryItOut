@@ -1,6 +1,6 @@
 <html>
   <head>
-    <script src="https://unpkg.com/@microsoft/mgt/dist/bundle/mgt-loader.js"></script>
+    <script src="https://unpkg.com/@microsoft/mgt@2/dist/bundle/mgt-loader.js"></script>
     <style>
       body {
         background-color: #F3F2F1;
@@ -90,7 +90,7 @@
           </div>
           <div data-if="fields.Status === 'Requested'" class="orderfooter">
             Items {{ fields.TotalItems }}<span class="status requested">Status: Requested</span>
-            <div class="buttonWrapper">         
+            <div class="buttonWrapper">
               <button onclick="updateOrder('{{fields.id}}', 'Ready for Packing')">Pack</button>
             </div>
           </div>
@@ -111,7 +111,7 @@
       if (provider && provider.state === mgt.ProviderState.SignedIn) {
         graphClient = provider.graph.client;
       }
-     
+
       const updateOrder = async (orderId, newStatus) => {
         const fieldValueSet = {
           Status: newStatus
@@ -120,7 +120,7 @@
         const result = await graphClient.api(`/sites/root/lists/[YOUR-SHAREPOINT-LIST-ID]/items/${orderId}/fields`)
           .middlewareOptions(mgt.prepScopes('sites.readwrite.all'))
           .update(fieldValueSet);
-          alert(`Updated order ${result.Title} as Packed`); 
+          alert(`Updated order ${result.Title} as Packed`);
       }
     </script>
   </body>

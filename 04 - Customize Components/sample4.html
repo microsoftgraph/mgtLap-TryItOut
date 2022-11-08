@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <script src="https://unpkg.com/@microsoft/mgt/dist/bundle/mgt-loader.js"></script>
+    <script src="https://unpkg.com/@microsoft/mgt@2/dist/bundle/mgt-loader.js"></script>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -30,7 +30,7 @@
         .team-list {
             max-width: 700px;
         }
-        
+
         .team-list mgt-person {
             --avatar-size: 72px;
             --font-size: 24px;
@@ -42,20 +42,20 @@
             background-color:white;
             margin: 8px;
         }
-        
+
         .team-list mgt-person:hover {
           -webkit-transform: scale(1.25);
           -moz-transform: scale(1.25);
           position: relative;
           z-index: 5;
-          box-shadow: 0 3px 6px rgba(0,0,0,.5);  
+          box-shadow: 0 3px 6px rgba(0,0,0,.5);
         }
-        
+
         mgt-person.second, mgt-person.fourth {
           -webkit-transform: rotate(2deg);
           -moz-transform: rotate(2deg);
         }
-        
+
         /* Don't rotate every third image, but offset its position */
         mgt-person.third {
           -webkit-transform: none;
@@ -63,7 +63,7 @@
           position: relative;
           top: -5px;
         }
-        
+
         /* Rotate every fifth image by 5 degrees and offset it */
         mgt-person.fifth {
           -webkit-transform: rotate(5deg);
@@ -71,7 +71,7 @@
           position: relative;
           right: 5px;
         }
-        
+
     </style>
     <h2>&lt;mgt-person /&gt;</h2>
     <div class="team-list">
